@@ -8,6 +8,13 @@ export const Container = styled.main`
   justify-content: space-between;
   min-height: 100vh;
   height: 100%;
+
+  @media (max-width: 1000px) {
+    justify-content: center;
+    & h1 {
+      text-align: center;
+    }
+  }
 `;
 
 export const FormContainer = styled.div`
@@ -26,11 +33,19 @@ export const Form = styled(FormFormik)`
   width: 100%;
   flex-direction: column;
   gap: 35px;
+
+  @media (max-width: 600px) {
+    max-width: 90%;
+  }
 `;
 
 export const ImgContainer = styled.div`
   display: flex;
   align-items: center;
+
+  @media (max-width: 1000px) {
+    display: none;
+  }
 `;
 
 export const Image = styled.img`
