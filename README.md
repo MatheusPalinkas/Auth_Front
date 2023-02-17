@@ -71,6 +71,7 @@ Abrir o navegador no endereço http://localhost:5173
 
 ### :thumbsup: Projeto publicado
 
-**Observação: A api ainda não foi publicada, logo as requisições não funcionam. Apenas as caracteristicas visuais.**
+**Observação: A api está publicada no microsoft azure, e o mesmo não libera envio de smtp.**
+**Por isso a criação de conta e recupearação de senha não estão disparando email. Local funciona normalmente.**
 
 [Link para o projeto na Vercel](https://auth-front-ten.vercel.app/login)
