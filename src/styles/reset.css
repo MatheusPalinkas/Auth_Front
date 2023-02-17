@@ -8,6 +8,7 @@
   --gray-300: #a89999;
   --gray-500: #534d4d;
   --black-300: #333333;
+  --black-100: #333333a9;
 }
 
 *,
@@ -127,10 +128,10 @@ h6 {
 }
 ::-webkit-scrollbar {
   width: 8px;
-  background: #0470cc;
+  background: var(--blue-500);
 }
 ::-webkit-scrollbar-thumb {
-  background: #269bff;
+  background: var(--blue-500);
 }
 
 a {

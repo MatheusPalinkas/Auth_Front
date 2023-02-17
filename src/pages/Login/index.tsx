@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Formik, FormikHelpers } from "formik";
 import * as Yup from "yup";
 
@@ -7,7 +7,7 @@ import { Button } from "../../components/Button";
 import { ILogin } from "../../interfaces/ILogin";
 
 import {
-  Form,
+  // Form,
   Image,
   Container,
   ImgContainer,
@@ -15,9 +15,17 @@ import {
   MessageWithLink,
 } from "./styles";
 import imgLogin from "../../assets/ilustracaoLogin.png";
-import { useCallback } from "react";
+import { useCallback, useContext } from "react";
+import { login } from "../../services/oauthService";
+import { ILoadingContext, LoadingContext } from "../../contexts/LoadingContext";
+import { Form } from "../../components/Form";
 
 export const Login = () => {
+  const navigate = useNavigate();
+
+  const { toggleLoading } = useContext(LoadingContext) as ILoadingContext;
+
+  //#region Form
   const initialValues: ILogin = {
     email: "",
     senha: "",
@@ -30,30 +38,34 @@ export const Login = () => {
 
   const handleSubmit = useCallback(
     (values: ILogin, actions: FormikHelpers<ILogin>) => {
-      setTimeout(() => {
-        alert(JSON.stringify(values, null, 2));
-        actions.setSubmitting(false);
-      }, 1000);
+      toggleLoading();
+      login(values)
+        .then(() => {
+          toggleLoading();
+          navigate("/home");
+        })
+        .catch(() => {
+          toggleLoading();
+        });
     },
     []
   );
+  //#endregion
 
   return (
     <Container>
       <FormContainer>
         <h1>Faça o Login</h1>
-        <Formik
+        <Form
           initialValues={initialValues}
           validationSchema={loginSchema}
           onSubmit={handleSubmit}
         >
-          <Form>
-            <Input label="Email de login" name="email" type="text" />
-            <Input label="Senha" name="senha" type="text" />
+          <Input label="Email de login" name="email" type="text" />
+          <Input label="Senha" name="senha" type="password" />
 
-            <Button type="submit">Login</Button>
-          </Form>
-        </Formik>
+          <Button type="submit">Entrar</Button>
+        </Form>
 
         <MessageWithLink>
           Não possui uma conta? <Link to="/registrar">criar uma conta</Link>

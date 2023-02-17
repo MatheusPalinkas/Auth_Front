@@ -67,3 +67,24 @@ export const ErrorMessage = styled.span`
   font-family: "Poppins", sans-serif;
   font-size: 0.7rem;
 `;
+
+export const ContainerIcon = styled.div`
+  position: absolute;
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  top: 0;
+  right: 0;
+  padding: 5px;
+
+  & > svg {
+    color: var(--black-300);
+    cursor: pointer;
+  }
+
+  &:hover > svg {
+    color: var(--blue-500);
+  }
+`;

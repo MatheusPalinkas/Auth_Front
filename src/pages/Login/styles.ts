@@ -23,20 +23,6 @@ export const FormContainer = styled.div`
   width: 100%;
 `;
 
-export const Form = styled(FormFormik)`
-  padding: 50px 0px;
-  width: 100%;
-  display: flex;
-  max-width: 500px;
-  width: 100%;
-  flex-direction: column;
-  gap: 35px;
-
-  @media (max-width: 600px) {
-    max-width: 90%;
-  }
-`;
-
 export const ImgContainer = styled.div`
   display: flex;
   align-items: center;
