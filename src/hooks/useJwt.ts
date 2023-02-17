@@ -2,6 +2,8 @@ import { useCallback, useEffect, useState } from "react";
 import { IJwt } from "../interfaces/IJwt";
 import { getJwt } from "../services/jwtServices";
 
+type typeJwtToken = string | null | undefined;
+
 export function useJwt() {
   const initialValue: IJwt = {
     aud: "",
@@ -22,18 +24,15 @@ export function useJwt() {
     if (currentJwt) setJwt(currentJwt);
   }, []);
 
-  const setJwtValue = useCallback(
-    (jwtToken: string | null | undefined = null): void => {
-      if (jwtToken != null && jwtToken != undefined) {
-        localStorage.setItem("@JWT", jwtToken);
-        setJwt(JSON.parse(jwtToken) as IJwt);
-      } else {
-        localStorage.removeItem("@JWT");
-        setJwt(initialValue);
-      }
-    },
-    []
-  );
+  const setJwtValue = useCallback((jwtToken: typeJwtToken = null): void => {
+    if (jwtToken != null && jwtToken != undefined) {
+      localStorage.setItem("@JWT", jwtToken);
+      setJwt(JSON.parse(jwtToken) as IJwt);
+    } else {
+      localStorage.removeItem("@JWT");
+      setJwt(initialValue);
+    }
+  }, []);
 
-  return [jwt, setJwtValue];
+  return { jwt, setJwtValue };
 }

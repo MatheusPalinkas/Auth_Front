@@ -9,10 +9,10 @@ import { Container, ContainerJwt } from "./styles";
 
 export const Home: React.FC = () => {
   const navigate = useNavigate();
-  const [jwt, setJwt] = useJwt();
+  const { jwt, setJwtValue } = useJwt();
 
   const logout = useCallback(() => {
-    setJwt(undefined);
+    setJwtValue();
     navigate("/login");
   }, []);
 
